@@ -4,11 +4,10 @@ from pydantic import BaseModel, Field
 
 class Article(BaseModel):
     id: str = Field(default_factory=uuid.uuid4, alias="_id")
-    title: str = Field(...)
     link: str = Field(...)
-    pos: float = Field(...)
-    neu: float = Field(...)
-    neg: float = Field(...)
+    positive: float = Field(...)
+    neutral: float = Field(...)
+    negative: float = Field(...)
     prediction: str = Field(...)
     date: str = Field(...)
 
@@ -17,11 +16,10 @@ class Article(BaseModel):
         schema_extra = {
             "example": {
                 "_id": "066de609-b04a-4b30-b46c-32537c7f1f6a",
-                "title": "Stock News",
                 "link": "https://docs.python.org/3/library/datetime.html",
-                "pos": 50,
-                "neu": 50,
-                "neg": 0,
+                "positive": 50,
+                "neutral": 50,
+                "negative": 0,
                 "prediction": "unknown",
                 "date": "today"
             }
@@ -38,20 +36,18 @@ class StockTicker(BaseModel):
                 "all_articles": [
                     {
                         "_id": "066de609-b04a-4b30-b46c-32537c7f1f6a",
-                        "title": "Stock News",
                         "link": "https://docs.python.org/3/library/datetime.html",
-                        "pos": 50,
-                        "neu": 50,
-                        "neg": 0,
+                        "positive": 50,
+                        "neutral": 50,
+                        "negative": 0,
                         "date": "today"
                     },
                     {
                         "_id": "066de609-b04a-4b30-b46c-32537c7f1f6f",
-                        "title": "Other News",
                         "link": "https://google.com",
-                        "pos": 0,
-                        "neu": 50,
-                        "neg": 50,
+                        "positive": 0,
+                        "neutral": 50,
+                        "negative": 50,
                         "date": "yesterday"
                     }
                 ]
@@ -66,20 +62,18 @@ class StockTickerUpdate(BaseModel):
                 "all_articles": [
                     {
                         "_id": "066de609-b04a-4b30-b46c-32537c7f1f6a",
-                        "title": "Stock News",
                         "link": "https://docs.python.org/3/library/datetime.html",
-                        "pos": 60,
-                        "neu": 40,
-                        "neg": 0,
+                        "positive": 60,
+                        "neutral": 40,
+                        "negative": 0,
                         "prediction": "unknown",
                         "date": "today"
                     },
                     {
-                        "title": "Other News",
                         "link": "https://google.com",
-                        "pos": 0,
-                        "neu": 40,
-                        "neg": 60,
+                        "positive": 0,
+                        "neutral": 40,
+                        "negative": 60,
                         "prediction": "unknown",
                         "date": "yesterday"
                     }
@@ -103,20 +97,19 @@ class Stock(BaseModel):
                 "all_articles": [
                     {
                         "_id": "066de609-b04a-4b30-b46c-32537c7f1f6a",
-                        "title": "Stock News",
                         "link": "https://docs.python.org/3/library/datetime.html",
-                        "pos": 60,
-                        "neu": 40,
-                        "neg": 0,
+                        "positive": 60,
+                        "neutral": 40,
+                        "negative": 0,
                         "prediction": "unknown",
                         "date": "today"
                     },
                     {
                         "title": "Other News",
                         "link": "https://google.com",
-                        "pos": 0,
-                        "neu": 40,
-                        "neg": 60,
+                        "positive": 0,
+                        "neutral": 40,
+                        "negative": 60,
                         "prediction": "unknown",
                         "date": "yesterday"
                     }
@@ -149,9 +142,9 @@ class ArticleUpdate(BaseModel):
     class Config:
         schema_extra = {
             "example": {
-                "pos": 60,
-                "neu": 40,
-            }
+                "positive": 60,
+                "neutral": 40,
+           }
         }
 
 class Book(BaseModel):
