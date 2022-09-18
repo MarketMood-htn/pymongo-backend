@@ -6,9 +6,9 @@ class Article(BaseModel):
     id: str = Field(default_factory=uuid.uuid4, alias="_id")
     title: str = Field(...)
     link: str = Field(...)
-    pos: int = Field(...)
-    neu: int = Field(...)
-    neg: int = Field(...)
+    pos: float = Field(...)
+    neu: float = Field(...)
+    neg: float = Field(...)
     prediction: str = Field(...)
     date: str = Field(...)
 
@@ -150,9 +150,9 @@ class StockUpdate(BaseModel):
 class ArticleUpdate(BaseModel):
     title: Optional[str]
     link: Optional[str]
-    pos: Optional[int]
-    neu: Optional[int]
-    neg: Optional[int]
+    pos: Optional[float]
+    neu: Optional[float]
+    neg: Optional[float]
     prediction: Optional[str]
     date: Optional[str]
 

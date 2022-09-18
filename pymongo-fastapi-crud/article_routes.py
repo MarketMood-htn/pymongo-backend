@@ -16,6 +16,20 @@ def create_article(request: Request, article: Article = Body(...)):
 
     return created_book
 
+@router.post("/many", response_description="Create many new articles", status_code=status.HTTP_201_CREATED, response_model=None)
+def create_article(request: Request, articles: List[Article] = Body(...)):
+    created_books = []
+    for a in articles:
+        article = jsonable_encoder(a)
+        print(article["link"])
+        if not list(request.app.database["articles"].find({"link": article["link"]})):
+            new_article = request.app.database["articles"].insert_one(article)
+            created_books.append(request.app.database["articles"].find_one(
+                {"_id": new_article.inserted_id}
+            ))
+
+    return created_books
+
 @router.get("/", response_description="List all articles", response_model=List[Article])
 def list_articles(request: Request):
     articles = list(request.app.database["articles"].find(limit=100))

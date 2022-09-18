@@ -23,7 +23,7 @@ cd {project_name}
 Install required dependencies
 `python -m pip install 'fastapi[all]' 'pymongo[srv]' python-decouple`
 
-Create a .env file in the root folder with
+Create a .env file in the pymongo-fastapi-crud folder with
 ```
 ATLAS_URI={Your Atlas connection string}
 DB_NAME={Name of your DB in Atlas}
