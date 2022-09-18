@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from decouple import config
 from pymongo import MongoClient
 from .tutorial_routes import router as book_router
@@ -7,6 +8,19 @@ from .stock_routes import router as stock_router
 #from .stock_ticker_routes import router as stock_ticker_router
 
 app = FastAPI()
+
+origins = [
+    "http://localhost",
+    "http://localhost:3000",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.on_event("startup")
 def startup_db_client():
