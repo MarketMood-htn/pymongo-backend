@@ -31,7 +31,7 @@ def find_stock(id: str, request: Request):
 def update_stock(id: str, request: Request, stock: StockUpdate = Body(...)):
     stock = {k: v for k, v in stock.dict().items() if v is not None}
     if len(stock) >= 1:
-        update_result = request.app.database["stock"].update_one(
+        update_result = request.app.database["stocks"].update_one(
             {"_id": id}, {"$set": stock}
         )
 

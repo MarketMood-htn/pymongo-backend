@@ -129,7 +129,7 @@ class Stock(BaseModel):
 class StockUpdate(BaseModel):
     ticker: Optional[StockTicker]
     price: Optional[float]
-    dateUpdate: Optional[str]
+    dateUpdated: Optional[str]
     name: Optional[str]
     abbreviation: Optional[str]
 
@@ -137,7 +137,7 @@ class StockUpdate(BaseModel):
         schema_extra = {
             "example": {
                 "price": 110.0,
-                "date": "Sept 18 2022",
+                "dateUpdated": "Sept 18 2022",
             }
         }
 
