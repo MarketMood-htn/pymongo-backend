@@ -89,61 +89,51 @@ class StockTickerUpdate(BaseModel):
 
 class Stock(BaseModel):
     id: str = Field(default_factory=uuid.uuid4, alias="_id")
-    ticker: StockTicker = Field(...)
-    price: float = Field(...)
-    dateUpdated: str = Field(...)
+    ticker: str = Field(...)
     name: str = Field(...)
-    abbreviation: str = Field(...)
+    all_articles: List[Article] = Field(...)
 
     class Config:
         allow_population_by_field_name = True
         schema_extra = {
             "example": {
                 "_id": "066de609-b04a-4b30-b46c-32537c7f1f6b",
-                "ticker": {
-                    "_id": "066de609-b04a-4b30-b46c-32537c7f1f6c",
-                    "all_articles": [
-                        {
-                            "_id": "066de609-b04a-4b30-b46c-32537c7f1f6a",
-                            "title": "Stock News",
-                            "link": "https://docs.python.org/3/library/datetime.html",
-                            "pos": 50,
-                            "neu": 50,
-                            "neg": 0,
-                            "prediction": "unknown",
-                            "date": "today"
-                        },
-                        {
-                            "_id": "066de609-b04a-4b30-b46c-32537c7f1f6f",
-                            "title": "Other News",
-                            "link": "https://google.com",
-                            "pos": 0,
-                            "neu": 50,
-                            "neg": 50,
-                            "prediction": "unknown",
-                            "date": "yesterday"
-                        }
-                    ]
-                },
-                "price": 100.0,
-                "dateUpdated": "Sept 17 2022",
+                "ticker": "APPL",
                 "name": "Apple",
-                "abbreviation": "APPL"
+                "all_articles": [
+                    {
+                        "_id": "066de609-b04a-4b30-b46c-32537c7f1f6a",
+                        "title": "Stock News",
+                        "link": "https://docs.python.org/3/library/datetime.html",
+                        "pos": 60,
+                        "neu": 40,
+                        "neg": 0,
+                        "prediction": "unknown",
+                        "date": "today"
+                    },
+                    {
+                        "title": "Other News",
+                        "link": "https://google.com",
+                        "pos": 0,
+                        "neu": 40,
+                        "neg": 60,
+                        "prediction": "unknown",
+                        "date": "yesterday"
+                    }
+                ]
             }
         }
 
 class StockUpdate(BaseModel):
-    ticker: Optional[StockTicker]
-    price: Optional[float]
-    dateUpdated: Optional[str]
+    ticker: Optional[str]
     name: Optional[str]
-    abbreviation: Optional[str]
+    all_articles: Optional[List[Article]]
 
     class Config:
         schema_extra = {
             "example": {
-                "price": 110.0,
-                "dateUpdated": "Sept 18 2022",
+                "name": "Android",
+                "ticker": "ADRD"
             }
         }
 
