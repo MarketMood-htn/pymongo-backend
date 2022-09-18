@@ -1,0 +1,4 @@
+Lib/
+pyvenv.cfg
+pymongo-fastapi-crud/__pycache__/
+*.env
