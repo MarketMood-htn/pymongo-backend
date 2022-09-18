@@ -31,7 +31,7 @@ def find_article(id: str, request: Request):
 def update_article(id: str, request: Request, article: ArticleUpdate = Body(...)):
     article = {k: v for k, v in article.dict().items() if v is not None}
     if len(article) >= 1:
-        update_result = request.app.database["article"].update_one(
+        update_result = request.app.database["articles"].update_one(
             {"_id": id}, {"$set": article}
         )
 
