@@ -27,6 +27,13 @@ def find_stock(id: str, request: Request):
         return Stock
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Stock with ID {id} not found")
 
+@router.get("/ticker/{ticker}", response_description="Get a single stock by ticker", response_model=Stock)
+def find_stock_by_ticker(ticker: str, request: Request):
+    if (Stock := request.app.database["stocks"].find_one({"ticker": ticker})) is not None:
+        return Stock
+    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Stock with Ticker {ticker} not found")
+
+
 @router.put("/{id}", response_description="Update a stock", response_model=Stock)
 def update_stock(id: str, request: Request, stock: StockUpdate = Body(...)):
     stock = {k: v for k, v in stock.dict().items() if v is not None}
