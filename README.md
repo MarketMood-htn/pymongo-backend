@@ -33,3 +33,5 @@ Run the program by using the command
 ```
 py -m uvicorn pymongo-fastapi-crud.main:app --reload
 ```
+
+If you go to http://127.0.0.1:8000/docs#/ you should see something.
