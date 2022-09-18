@@ -9,6 +9,7 @@ class Article(BaseModel):
     pos: int = Field(...)
     neu: int = Field(...)
     neg: int = Field(...)
+    prediction: str = Field(...)
     date: str = Field(...)
 
     class Config:
@@ -21,6 +22,7 @@ class Article(BaseModel):
                 "pos": 50,
                 "neu": 50,
                 "neg": 0,
+                "prediction": "unknown",
                 "date": "today"
             }
         }
@@ -69,6 +71,7 @@ class StockTickerUpdate(BaseModel):
                         "pos": 60,
                         "neu": 40,
                         "neg": 0,
+                        "prediction": "unknown",
                         "date": "today"
                     },
                     {
@@ -77,6 +80,7 @@ class StockTickerUpdate(BaseModel):
                         "pos": 0,
                         "neu": 40,
                         "neg": 60,
+                        "prediction": "unknown",
                         "date": "yesterday"
                     }
                 ]
@@ -106,6 +110,7 @@ class Stock(BaseModel):
                             "pos": 50,
                             "neu": 50,
                             "neg": 0,
+                            "prediction": "unknown",
                             "date": "today"
                         },
                         {
@@ -115,6 +120,7 @@ class Stock(BaseModel):
                             "pos": 0,
                             "neu": 50,
                             "neg": 50,
+                            "prediction": "unknown",
                             "date": "yesterday"
                         }
                     ]
@@ -147,6 +153,7 @@ class ArticleUpdate(BaseModel):
     pos: Optional[int]
     neu: Optional[int]
     neg: Optional[int]
+    prediction: Optional[str]
     date: Optional[str]
 
     class Config:
