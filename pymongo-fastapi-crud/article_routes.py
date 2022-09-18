@@ -17,7 +17,7 @@ def create_article(request: Request, article: Article = Body(...)):
     return created_book
 
 @router.post("/many", response_description="Create many new articles", status_code=status.HTTP_201_CREATED, response_model=None)
-def create_article(request: Request, articles: List[Article] = Body(...)):
+def create_many_articles(request: Request, articles: List[Article] = Body(...)):
     created_books = []
     for a in articles:
         article = jsonable_encoder(a)
